@@ -1,0 +1,12 @@
+spring:  
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update  
+  thymeleaf:    
+    cache: false
+  h2:
+    console:
+      enabled: true
+      path: /h2
+        

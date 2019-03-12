@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<title>Questionnaire</title>
+<script>
+	function submitQuestion() {
+		var selectedOption;
+		var data = {};
+		var questionNumber = document.getElementById("1").id;
+		if (document.getElementById('one').checked) {
+			selectedOption = document.getElementById('one').value;
+		} else if (document.getElementById('two').checked) {
+			selectedOption = document.getElementById('two').value;
+		} else if (document.getElementById('three').checked) {
+			selectedOption = document.getElementById('three').value;
+		} else if (document.getElementById('four').checked) {
+			selectedOption = document.getElementById('four').value;
+		} else if (document.getElementById('five').checked) {
+			selectedOption = document.getElementById('five').value;
+		} else {
+			alert("Please select at least one value");
+		}
+
+		if (selectedOption != null || selectedOption != undefined) {
+			data["selectedOption"] = selectedOption;
+			data["questionNumber"] = questionNumber;
+			data["userName"] = document.getElementById("userName").textContent;
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/investmentrecommendation/store",
+				data : JSON.stringify(data),
+				dataType : 'json',
+				timeout : 100000,
+				success : function(data) {
+					console.log("SUCCESS: ", data);
+					window.location.href = "/investmentrecommendation/second";
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				},
+				done : function(e) {
+					console.log("DONE");
+				}
+			});
+
+		}
+	}
+</script>
+</head>
+
+<body>
+	<span id="userName" th:text="${userName}" style="display: none"></span>
+	<div class="container" style="margin-top: 10px;">
+		<div class="row panel panel-default panel-body">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2">
+					<div class="form-group">
+						<div class="form-group col-md-12">
+							<div class="form-group" align="center">
+								<div class="form-group col-md-8">
+									<div class="row panel panel-default" style="margin-top: 5px;">
+										<div class="panel-heading text-center">Online Risk
+											Profile Assessment Questionnaire</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md-4">
+								<a href="javascript: document.logoutForm.submit()"
+									style="float: right"> Log Out</a>
+								<form name="logoutForm" th:action="@{/logout}" method="post"
+									th:hidden="true">
+									<input type="submit" value="Sign Out" id="logout" />
+								</form>
+							</div>
+						</div>
+
+						<div style="margin-bottom: 20px;">Please answer the
+							following question by choosing the appropriate option, and then
+							click on Next.</div>
+
+						<div id="1">1. My Age (in years) is:</div>
+						<div id="age">
+							<input type="radio" id="one" name="age" value="lessthan18" />
+							Less than 18 <br /> <input type="radio" id="two" name="age"
+								value="18to40" /> 18 - 40 <br /> <input type="radio"
+								id="three" name="age" value="40to50" /> 40 - 50 <br /> <input
+								type="radio" id="four" name="age" value="50to60" /> 50 - 60 <br />
+							<input type="radio" id="five" name="age" value="greaterthan60" />
+							Greater than 60 <br />
+						</div>
+
+						<div class="form-group">
+							<div class="form-group col-md-6 col-md-offset-1">
+
+								<p>
+									<a href="javascript:submitQuestion()" style="float: right">Next</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
