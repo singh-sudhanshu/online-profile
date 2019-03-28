@@ -102,11 +102,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private boolean  isUser(User user) {
+		boolean isUser = false;
 		Role userRole = roleRepository.findByName("ROLE_USER");
 		if (user.getRoles().contains(userRole)) {
-			return true;
+			isUser = true;
 		}		
-		return false;		
+		return isUser;		
 	}
 	
 	public List<AssessmentData> findAssessmentData() {
@@ -232,12 +233,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Summary> findRiskProfiles() {
-		List<Summary> summaries = new ArrayList<Summary>();
+		List<Summary> summaries = new ArrayList<>();
 		List<User> user = userRepository.findAll();
 		for (User u : user) {
 			Summary summary = new Summary();
 			List<AssessmentData> assessmentData = getAssessmentDataByEmail(u.getEmail());			
-			if (assessmentData != null && assessmentData.size() > 0) {
+			if (!assessmentData.isEmpty() && assessmentData.size() > 0) {
 				Integer profileScore = 0;
 				for (AssessmentData data : assessmentData) {
 					profileScore += profileScore(data.getQuestionNumber(), data.getSelectedOption());
@@ -263,7 +264,7 @@ public class UserServiceImpl implements UserService {
 		User userDetails = getInvestorDetails(firstName, lastName, mobile, email);
 		if(userDetails != null){
 		List<AssessmentData> assessmentData = getAssessmentDataByEmail(userDetails.getEmail());
-		if (assessmentData != null && assessmentData.size() > 0) {
+		if (!assessmentData.isEmpty() && assessmentData.size() > 0) {
 			Integer profileScore = 0;
 			for (AssessmentData data : assessmentData) {
 				profileScore += profileScore(data.getQuestionNumber(), data.getSelectedOption());

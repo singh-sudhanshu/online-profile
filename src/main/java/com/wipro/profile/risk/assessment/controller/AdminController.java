@@ -102,9 +102,9 @@ public class AdminController {
 		User user = new User();
 		model.addObject("user", user);
 		List<Summary> summaries = userService.findRiskProfiles();
-		if (summaries != null && !summaries.isEmpty() && summaries.size() > 0) {
+		if (!summaries.isEmpty() && summaries.size() > 0) {
 			flag = true;
-			model.addObject("users", summaries);
+			model.addObject(userList, summaries);
 			model.addObject("flag", flag);
 		} else {
 			model.addObject("msg", NO_USER_FOUND);

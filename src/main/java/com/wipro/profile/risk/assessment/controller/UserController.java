@@ -148,7 +148,7 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		List<AssessmentData> assessmentData = userService.getAssessmentDataByEmail(user.getEmail());
-		if (assessmentData != null && !assessmentData.isEmpty() && assessmentData.size() > 0) {
+		if (!assessmentData.isEmpty() && assessmentData.size() > 0) {
 			Integer profileScore = 0;		
 			for (AssessmentData data : assessmentData) {
 				profileScore += userService.profileScore(data.getQuestionNumber(), data.getSelectedOption());
@@ -162,5 +162,4 @@ public class UserController {
 		}		
 		return summary;
 	}
-
 }
