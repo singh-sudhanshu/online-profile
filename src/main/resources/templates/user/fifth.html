@@ -11,7 +11,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<title>Questionnaire</title>
+<title>Online Risk Profile Assessment Questionnaire</title>
 <script>
 	function submitQuestion() {
 		var selectedOption;
@@ -71,11 +71,11 @@
 								</div>
 							</div>
 							<div class="form-group col-md-4">
-								<a href="javascript: document.logoutForm.submit()"
+								<a id="logout" href="javascript: document.logoutForm.submit()"
 									style="float: right"> Log Out</a>
 								<form name="logoutForm" th:action="@{/logout}" method="post"
 									th:hidden="true">
-									<input type="submit" value="Sign Out" id="logout" />
+									<input type="submit" value="Sign Out"/>
 								</form>
 							</div>
 						</div>

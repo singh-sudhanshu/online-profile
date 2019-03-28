@@ -35,11 +35,11 @@
 								</div>
 							</div>
 							<div class="form-group col-md-4">
-								<a href="javascript: document.logoutForm.submit()"
+								<a id="logout" href="javascript: document.logoutForm.submit()"
 									style="float: right"> Log Out</a>
 								<form name="logoutForm" th:action="@{/logout}" method="post"
 									th:hidden="true">
-									<input type="submit" value="Sign Out" id="logout" />
+									<input type="submit" value="Sign Out" />
 								</form>
 							</div>
 
