@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <title>Notification</title>
+</head>
+<body>
+<section style="margin-top:50px;">
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+	<p>
+	Since you have not done your risk profile assessment prior to this, Please 
+	complete your Risk Profile Assessment before clicking on recommendations link.
+	</p>
+	<a style="float:right" href="/investmentrecommendation/home">Go back to Home page</a>
+</div>
+</div>
+</section>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
