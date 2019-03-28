@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 	                        .loginPage("/investmentrecommendation/login").failureUrl("/investmentrecommendation/login?error=true")
 	                        .loginProcessingUrl("/login")	                        
 	                        .successHandler(successHandler())
-	                        .usernameParameter("email")
+	                        .usernameParameter("userName")
 	                        .passwordParameter("password")	                            
 	                .and()
 	                    .logout()
